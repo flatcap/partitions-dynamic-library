@@ -18,14 +18,14 @@ main()
 	dlerror();
 
 	// load the symbols
-	create_t* create_triangle = (create_t*) dlsym (lib_triangle, "create");
+	create_t* create_triangle = (create_t*) dlsym (lib_triangle, "create");	// "_Z6createv"
 	const char* dlsym_error = dlerror();
 	if (dlsym_error) {
 		std::cerr << "Cannot load symbol create: " << dlsym_error << '\n';
 		return 1;
 	}
 
-	destroy_t* destroy_triangle = (destroy_t*) dlsym (lib_triangle, "destroy");
+	destroy_t* destroy_triangle = (destroy_t*) dlsym (lib_triangle, "destroy");	// "_Z7destroyP7Polygon"
 	dlsym_error = dlerror();
 	if (dlsym_error) {
 		std::cerr << "Cannot load symbol destroy: " << dlsym_error << '\n';
