@@ -1,18 +1,19 @@
 # dlopen test
 
-CC	= gcc
+CC	= g++
 RM	= rm -fr
 
-SRC	= foo1.c foo2.c
-OBJ	= $(SRC:.c=.o)
+SRC	= foo1.cpp foo2.cpp
+OBJ	= $(SRC:.cpp=.o)
 OUT	= foo1 foo2.so dlopen
 
+CFLAGS	+= -std=c++11
 CFLAGS	+= -g
 CFLAGS	+= -fPIC
 
 all:	$(SRC) $(OBJ) $(OUT)
 
-.c.o:
+.cpp.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
 foo1:	foo1.o foo2.so
@@ -26,8 +27,8 @@ clean:
 	$(RM) foo2.so
 	$(RM) foo1 dlopen
 
-dlopen:	dlopen.c
-	$(CC) -o $@ dlopen.c -ldl
+dlopen:	dlopen.cpp
+	$(CC) -o $@ dlopen.cpp -ldl
 
 run:	foo1 dlopen foo2.so
 	LD_LIBRARY_PATH=. foo1

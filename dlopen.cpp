@@ -17,7 +17,7 @@ int main (int argc, char *argv[])
 		return 1;
 	}
 
-	foo_pointer = dlsym (handle, "foo");
+	// foo_pointer = dlsym (handle, "foo");
 	error = dlerror();
 	if (error) {
 		printf ("dlsym failed: %s\n", error);
